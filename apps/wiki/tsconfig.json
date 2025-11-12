@@ -12,8 +12,8 @@
     "emitDecoratorMetadata": false,
     "module": "preserve",
     "paths": {
-      "@app-core/*": ["apps/my-app/src/app/core/*"],
-      "@app-shared/*": ["apps/my-app/src/app/shared/*"]
+      "@app-core/*": ["apps/wiki/src/app/core/*"],
+      "@app-shared/*": ["apps/wiki/src/app/shared/*"]
     }
   },
   "angularCompilerOptions": {

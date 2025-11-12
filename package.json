@@ -1,14 +1,14 @@
 {
-  "name": "@my-app/source",
+  "name": "@wiki/source",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "all:build": "pnpm exec nx run-many --target build --all",
     "all:lint": "pnpm exec nx run-many --target lint --all",
     "prepare": "husky",
-    "my-app:build": "pnpm exec nx run my-app:build",
-    "my-app:lint": "pnpm exec nx run my-app:lint",
-    "my-app:serve": "pnpm exec nx run my-app:serve"
+    "wiki:build": "pnpm exec nx run wiki:build",
+    "wiki:lint": "pnpm exec nx run wiki:lint",
+    "wiki:serve": "pnpm exec nx run wiki:serve"
   },
   "dependencies": {
     "@angular/common": "~20.3.0",

@@ -1,4 +1,4 @@
-# my-app
+# wiki
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
@@ -11,19 +11,19 @@
 To run the dev server for your app, use:
 
 ```sh
-npx nx serve my-app
+npx nx serve wiki
 ```
 
 To create a production bundle:
 
 ```sh
-npx nx build my-app
+npx nx build wiki
 ```
 
 To see all available targets to run for a project, run:
 
 ```sh
-npx nx show project my-app
+npx nx show project wiki
 ```
 
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
@@ -102,7 +102,7 @@ And join the Nx community:
 
 ## Renaming the Project
 
-To rename the project from "my-app" to your desired names, run the provided script with one arguments: the kebab-case replacement for "my-app". For example:
+To rename the project from "wiki" to your desired names, run the provided script with one arguments: the kebab-case replacement for "wiki". For example:
 
 ```bash
 ./rename_script.sh my-wiki

@@ -1,27 +1,27 @@
 {
-  "name": "my-app",
+  "name": "wiki",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/my-app/src",
+  "sourceRoot": "apps/wiki/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/my-app",
-        "index": "apps/my-app/src/index.html",
-        "browser": "apps/my-app/src/main.ts",
-        "tsConfig": "apps/my-app/tsconfig.app.json",
+        "outputPath": "dist/apps/wiki",
+        "index": "apps/wiki/src/index.html",
+        "browser": "apps/wiki/src/main.ts",
+        "tsConfig": "apps/wiki/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/my-app/public",
+            "input": "apps/wiki/public",
             "output": "."
           }
         ],
-        "styles": ["apps/my-app/public/css/styles.css"],
+        "styles": ["apps/wiki/public/css/styles.css"],
         "scripts": []
       },
       "configurations": {
@@ -40,8 +40,8 @@
           ],
           "fileReplacements": [
             {
-              "replace": "apps/my-app/src/environments/environment.ts",
-              "with": "apps/my-app/src/environments/environment.production.ts"
+              "replace": "apps/wiki/src/environments/environment.ts",
+              "with": "apps/wiki/src/environments/environment.production.ts"
             }
           ],
           "outputHashing": "all"
@@ -53,8 +53,8 @@
           "sourceMap": true,
           "fileReplacements": [
             {
-              "replace": "apps/my-app/src/environments/environment.ts",
-              "with": "apps/my-app/src/environments/environment.development.ts"
+              "replace": "apps/wiki/src/environments/environment.ts",
+              "with": "apps/wiki/src/environments/environment.development.ts"
             }
           ]
         }
@@ -64,7 +64,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "my-app:build"
+        "buildTarget": "wiki:build"
       }
     },
     "lint": {
@@ -75,10 +75,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "my-app:build:production"
+          "buildTarget": "wiki:build:production"
         },
         "development": {
-          "buildTarget": "my-app:build:development"
+          "buildTarget": "wiki:build:development"
         }
       },
       "defaultConfiguration": "development"
