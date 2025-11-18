@@ -1,21 +1,50 @@
+@let userResource = _service.usersResource;
 <app-table
   #userTable
-  [resourceRef]="_service.users"
+  [resourceRef]="userResource.resource"
   [header]="tableHeader"
   [body]="tableBody"
-  [(pageNumber)]="pageNumber"
-  [(pageSize)]="pageSize">
+  [(pageNumber)]="userResource.pageNumber"
+  [(pageSize)]="userResource.pageSize">
   <ng-template #tableHeader>
     <tr flowbiteTableHead>
       <th
         scope="col"
-        class="px-6 py-3">
-        {{ 'misc.id' | translate }}
+        class="px-6 py-3"
+        (click)="userResource.onSortChange('id')">
+        <span class="flex flex-row">
+          {{ 'misc.id' | translate }}
+          @if (userResource.sortRequest()['id'] !== undefined) {
+            @if (userResource.sortRequest()['id'] === true) {
+              <flowbite-icon
+                name="arrowUp"
+                class="size-4" />
+            } @else {
+              <flowbite-icon
+                name="arrowDown"
+                class="size-4" />
+            }
+          }
+        </span>
       </th>
       <th
         scope="col"
-        class="px-6 py-3">
-        {{ 'misc.createdAt' | translate }}
+        class="px-6 py-3"
+        (click)="userResource.onSortChange('createdAtUtc')">
+        <span class="flex flex-row">
+          {{ 'misc.createdAt' | translate }}
+          @if (userResource.sortRequest()['createdAtUtc'] !== undefined) {
+            @if (userResource.sortRequest()['createdAtUtc'] === true) {
+              <flowbite-icon
+                name="arrowUp"
+                class="size-4" />
+            } @else {
+              <flowbite-icon
+                name="arrowDown"
+                class="size-4" />
+            }
+          }
+        </span>
       </th>
       <th
         scope="col"
