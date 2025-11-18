@@ -1,5 +1,3 @@
-import { PaginationRequest } from './pagination.request';
-
 import * as z from 'zod';
 
 export interface PaginationResponse<T> {
@@ -20,10 +18,4 @@ export const ZPaginationResponse = <T extends z.ZodType<any, any>>(itemSchema: T
     hasPreviousPage: z.boolean(),
     totalPages: z.number(),
     data: z.array(itemSchema),
-  });
-
-export const toURLSearchParams = (request: PaginationRequest) =>
-  new URLSearchParams({
-    pageNumber: request.pageNumber.toString(),
-    pageSize: request.pageSize.toString(),
   });
