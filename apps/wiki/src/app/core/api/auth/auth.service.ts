@@ -1,5 +1,6 @@
 import { APP_CONFIG_SERVICE } from '@app-core/app-config.service';
 import { APP_AUTH_CONFIG } from '@app-core/config/auth.config';
+import { AccessToken } from '@app-core/models/access-token.interface';
 import { IdToken } from '@app-core/models/id-token.interface';
 import { APP_STORAGE_SERVICE } from '@app-core/storage.service';
 
@@ -9,7 +10,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, filter, from, map, Observable, of, switchMap, tap } from 'rxjs';
-import { AccessToken } from '@app-core/models/access-token.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -32,11 +32,23 @@ export class AuthService {
     this._authService.configure(inject(APP_AUTH_CONFIG));
     this._authService.setupAutomaticSilentRefresh();
 
+    this._isAuthenticated$
+      .pipe(
+        takeUntilDestroyed(),
+        switchMap((isAuthenticated) => {
+          if (isAuthenticated) {
+            return this.syncUser();
+          } else {
+            return of(this._storageService.removeItem(this._storageKeys.sync));
+          }
+        })
+      )
+      .subscribe();
+
     this._authService.events
       .pipe(
         takeUntilDestroyed(),
         filter((event) => event.type == 'token_received'),
-        switchMap(() => this.syncUser()),
         tap(() => this._isAuthenticated$.next(true))
       )
       .subscribe();
@@ -45,7 +57,6 @@ export class AuthService {
       .pipe(
         takeUntilDestroyed(),
         filter((event) => event.type == 'logout' || event.type == 'token_expires'),
-        tap(() => this._storageService.removeItem(this._storageKeys.sync)),
         tap(() => this._isAuthenticated$.next(false))
       )
       .subscribe();
